@@ -19,7 +19,10 @@ int main(int ac, char **av)
 			}
 			i++;
 		}
-		
+		for (t_list *tmp = lst; tmp; tmp = tmp->next)
+		{
+			printf("%d, ", tmp->value);
+		}
 	}
 	return (0);
 }

@@ -1,12 +1,12 @@
 #include "push_swap.h"
 
-long	ft_strtol(char *nptr, char **endptr, int base)
+int	ft_atoi(const char *nptr)
 {
-	long	result;
 	int		sign;
+	long	result;
 
-	result = 0;
 	sign = 1;
+	result = 0;
 	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
 		nptr++;
 	if (*nptr == '-')
@@ -18,14 +18,13 @@ long	ft_strtol(char *nptr, char **endptr, int base)
 		nptr++;
 	while (*nptr >= '0' && *nptr <= '9')
 	{
-		if (sign == 1 && result > LONG_MAX / base)
-			return ((errno = ERANGE), (*endptr = nptr), LONG_MAX);
-		else if (result > LONG_MAX / base)
-			return ((errno = ERANGE), (*endptr = nptr), LONG_MIN);
-		result = result * base + (*nptr - '0');
+		result = result * 10 + ((*nptr) - '0');
 		nptr++;
+		if (sign == -1 && result > INT_MAX)
+			return (0);
+		if (result > INT_MAX)
+			return (-1);
 	}
-	*endptr = nptr;
 	return (result * sign);
 }
 

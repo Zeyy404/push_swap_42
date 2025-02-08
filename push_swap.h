@@ -19,11 +19,11 @@ typedef struct s_stack
     int size;
 } t_stack;
 
-long	ft_strtol(char *nptr, char **endptr, int base);
+int		ft_atoi(const char *nptr);
 t_list	*ft_lstnew(int value);
 void	ft_lstclear(t_list **lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 int		input_lst(t_list **lst, char *str);
-int		is_duplicate(t_list lst, int value);
+int		is_duplicate(t_list *lst, int value);
 
 #endif
