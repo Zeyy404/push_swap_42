@@ -23,6 +23,7 @@ int		ft_atoi(const char *nptr);
 t_list	*ft_lstnew(int value);
 void	ft_lstclear(t_list **lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
+int		ft_lstsize(t_list *lst);
 int		input_lst(t_list **lst, char *str);
 int		is_duplicate(t_list *lst, int value);
 

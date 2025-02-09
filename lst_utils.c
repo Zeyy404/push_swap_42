@@ -1,39 +1,62 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   lst_utils.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: zsalih <zsalih@student.42abudhabi.ae>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/08 13:38:43 by zsalih            #+#    #+#             */
-/*   Updated: 2025/02/08 20:01:40 by zsalih           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
-int	is_duplicate(t_list *lst, int value)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	while (lst)
+	t_list	*tmp;
+
+	if (!lst || !new)
+		return ;
+	if (!*lst)
 	{
-		if (lst->value == value)
-			return (1);
-		lst = lst->next;
+		*lst = new;
+		return ;
 	}
-	return (0);
+	tmp = *lst;
+	while (tmp->next)
+	{
+		tmp = tmp->next;
+	}
+	tmp->next = new;
 }
 
-int	input_lst(t_list **lst, char *str)
+t_list	*ft_lstnew(int value)
 {
-	int	value;
+	t_list	*new_node;
 
-	errno = 0;
-	value = ft_atoi(str);
-	if (is_duplicate(*lst, (int)value) || (value == 0 && str[0] != '0') || (value == -1 && str[0] != '-'))
+	new_node = (t_list *)malloc(sizeof(t_list));
+	if (!new_node)
+		return (NULL);
+	new_node->value = value;
+	new_node->next = NULL;
+	return (new_node);
+}
+
+void	ft_lstclear(t_list **lst)
+{
+	t_list	*tmp;
+	t_list	*next_node;
+
+	if (!lst || !*lst)
+		return ;
+	tmp = *lst;
+	while (tmp)
 	{
-		write(2, "Error\n", 6);
-		return (0);
+		next_node = tmp->next;
+		free(tmp);
+		tmp = next_node;
 	}
-	ft_lstadd_back(lst, ft_lstnew((int)value));
-	return (1);
+	*lst = NULL;
+}
+
+int	ft_lstsize(t_list *lst)
+{
+	int	count;
+
+	count = 0;
+	while (lst)
+	{
+		count++;
+		lst = lst->next;
+	}
+	return (count);
 }
