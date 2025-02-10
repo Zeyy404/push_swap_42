@@ -2,7 +2,7 @@ CC:= cc
 CFLAGS:= -Wall -Werror -Wextra
 NAME:= push_swap
 
-SRCS:= push_swap.c lst_utils.c libft_utils.c parse_utils.c
+SRCS:= push_swap.c lst_utils.c libft_utils.c parse_utils.c push_swap_ops.c
 
 OBJS:= $(SRCS:.c=.o)
 
@@ -11,8 +11,8 @@ $(NAME): $(OBJS)
 
 all: $(NAME)
 
-bonus: $(OBJSB)
-	ar rcs $(NAME) $^
+debug: CFLAGS += -fsanitize=address -ggdb3
+debug: all
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

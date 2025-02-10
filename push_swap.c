@@ -5,6 +5,8 @@ int main(int ac, char **av)
 {
 	int		i;
 	t_list	*lst;
+	t_stack	*stack_a;
+	// t_stack *stack_b;
 
 	i = 1;
 	lst = NULL;
@@ -19,7 +21,10 @@ int main(int ac, char **av)
 			}
 			i++;
 		}
-		for (t_list *tmp = lst; tmp; tmp = tmp->next)
+		stack_a = init_stack(lst);
+		// stack_b = init_stack(NULL);
+		rotate(stack_a);
+		for (t_list *tmp = stack_a->top; tmp; tmp = tmp->next)
 		{
 			printf("%d, ", tmp->value);
 		}
