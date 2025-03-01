@@ -26,15 +26,24 @@ int	is_duplicate(t_list *lst, int value)
 int	input_lst(t_list **lst, char *str)
 {
 	int	value;
+	int	i;
+	int error;
+	char	**strs;
 
-	errno = 0;
-	value = ft_atoi(str);
-	if (is_duplicate(*lst, (int)value) || (value == 0 && str[0] != '0') || (value == -1 && str[0] != '-'))
+	i = 0;
+	error = 0;
+	strs = ft_split(str, ' ');
+	while (strs[i])
 	{
-		write(2, "Error\n", 6);
-		return (0);
+		value = ft_atoi(strs[i], &error);
+		if (is_duplicate(*lst, (int)value) || (value == 0 && str[0] != '0') || (value == -1 && str[0] != '-') || error == 1)
+		{
+			write(2, "Error\n", 6);
+			return (0);
+		}
+		ft_lstadd_back(lst, ft_lstnew((int)value));
+		i++;
 	}
-	ft_lstadd_back(lst, ft_lstnew((int)value));
 	return (1);
 }
 

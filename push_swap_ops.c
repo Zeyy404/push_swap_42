@@ -44,7 +44,7 @@ void	rotate(t_stack *stack)
 	curr->next = tmp;
 }
 
-void	rrotate(t_stack *stack)
-{
+// void	rrotate(t_stack *stack)
+// {
 	
-}
+// }

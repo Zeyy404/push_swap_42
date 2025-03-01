@@ -19,7 +19,10 @@ typedef struct s_stack
     int size;
 } t_stack;
 
-int		ft_atoi(const char *nptr);
+int		ft_atoi(const char *nptr, int *error);
+char	**ft_split(char const *s, char c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+size_t	ft_strlen(const char *s);
 t_list	*ft_lstnew(int value);
 void	ft_lstclear(t_list **lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
