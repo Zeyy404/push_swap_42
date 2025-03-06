@@ -65,11 +65,16 @@ void	push_smallest(t_stack *stack, t_stack *stack_a, t_stack *stack_b)
 
 void	sort_five(t_stack *stack, t_stack *stack_a, t_stack *stack_b)
 {
-	push_smallest(stack, stack_a, stack_b);
-	push_smallest(stack, stack_a, stack_b);
+	int to_push;
+
+	to_push = stack_a->size - 3;
+	while (to_push--)
+	{
+		push_smallest(stack, stack_a, stack_b);
+	}
 	sort_three(stack, stack_a, stack_b);
-	push(stack_b, stack_a, stack_a, stack_b);
-	push(stack_b, stack_a, stack_a, stack_b);
+	while (stack_b->size)
+		push(stack_b, stack_a, stack_a, stack_b);
 }
 
 void	insertion_sort(t_stack *stack, t_stack *stack_a, t_stack *stack_b)
@@ -77,7 +82,7 @@ void	insertion_sort(t_stack *stack, t_stack *stack_a, t_stack *stack_b)
 	if (stack->size <= 1)
 		return ;
 	if (stack->size == 2 && stack->top->value > stack->top->next->value)
-        swap(stack, stack_a, stack_b);
+		swap(stack, stack_a, stack_b);
 	if (stack->size == 3)
 		sort_three(stack, stack_a, stack_b);
 	else if (stack->size > 3)
