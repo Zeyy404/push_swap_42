@@ -95,8 +95,8 @@ void	double_ops(t_stack *stack_a, t_stack *stack_b, char op)
 	}
 	else if (op == 'R')
 	{
-		reverse_rotate(stack_a, stack_a, stack_b);
-		reverse_rotate(stack_b, stack_a, stack_b);
+		rrotate(stack_a, stack_a, stack_b);
+		rrotate(stack_b, stack_a, stack_b);
 		write(1, "rrr\n", 4);
 	}
 }

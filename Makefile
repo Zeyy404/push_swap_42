@@ -2,7 +2,8 @@ CC:= cc
 CFLAGS:= -Wall -Werror -Wextra
 NAME:= push_swap
 
-SRCS:= push_swap.c lst_utils.c libft_utils.c parse_utils.c push_swap_ops.c ft_split.c
+SRCS:= push_swap.c lst_utils.c libft_utils.c parse_utils.c push_swap_ops.c ft_split.c \
+		insertion_sort.c
 
 OBJS:= $(SRCS:.c=.o)
 
