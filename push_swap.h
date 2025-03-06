@@ -30,9 +30,10 @@ int		ft_lstsize(t_list *lst);
 int		input_lst(t_list **lst, char *str);
 int		is_duplicate(t_list *lst, int value);
 t_stack	*init_stack(t_list *lst);
-void	swap(t_stack *stack);
-void	push(t_stack *stack_a, t_stack *stack_b);
-void	rotate(t_stack *stack);
-void	rrotate(t_stack *stack);
+void	swap(t_stack *stack, t_stack *stack_a, t_stack *stack_b);
+void	push(t_stack *src, t_stack *dest, t_stack *stack_a, t_stack *stack_b);
+void	rotate(t_stack *stack, t_stack *stack_a, t_stack *stack_b);
+void	rrotate(t_stack *stack, t_stack *stack_a, t_stack *stack_b);
+void	double_ops(t_stack *stack_a, t_stack *stack_b, char op);
 
 #endif

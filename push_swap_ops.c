@@ -1,50 +1,102 @@
 #include "push_swap.h"
 
-void	swap(t_stack *stack)
+void	swap(t_stack *stack, t_stack *stack_a, t_stack *stack_b)
 {
 	t_list	*first;
 	t_list	*second;
 
-	if (stack->size < 2)
+	if (!stack || stack->size < 2)
 		return ;
 	first = stack->top;
 	second = first->next;
 	first->next = second->next;
 	second->next = first;
 	stack->top = second;
+	if (stack == stack_a)
+		write(1, "sa\n", 3);
+	else if (stack == stack_b)
+		write(1, "sb\n", 3);
 }
 
-void	push(t_stack *stack_a, t_stack *stack_b)
+void	push(t_stack *src, t_stack *dest, t_stack *stack_a, t_stack *stack_b)
 {
 	t_list	*tmp;
 
-	if (!stack_a || !stack_a->top)
-		return ;
-	tmp = stack_a->top;
-	stack_a->top = tmp->next;
-	stack_a->size--;
-	tmp->next = stack_b->top;
-	stack_b->top = tmp;
-	stack_b->size++;
+	if (!src || !src->top)
+		return;
+	tmp = src->top;
+	src->top = tmp->next;
+	tmp->next = dest->top;
+	dest->top = tmp;
+	src->size--;
+	dest->size++;
+	if (dest == stack_a)
+		write(1, "pa\n", 3);
+	else if (dest == stack_b)
+		write(1, "pb\n", 3);
 }
 
-void	rotate(t_stack *stack)
+void	rotate(t_stack *stack, t_stack *stack_a, t_stack *stack_b)
 {
-	t_list	*curr;
-	t_list	*tmp;
+	t_list	*first;
+	t_list	*last;
 
-	curr = stack->top;
-	while(curr->next)
+	if (!stack || !stack->top || !stack->top->next)
+		return;
+	first = stack->top;
+	last = stack->top;
+	while (last->next)
+		last = last->next;
+	stack->top = first->next;
+	first->next = NULL;
+	last->next = first;
+	if (stack == stack_a)
+		write(1, "ra\n", 3);
+	else if (stack == stack_b)
+		write(1, "rb\n", 3);
+}
+
+void	rrotate(t_stack *stack, t_stack *stack_a, t_stack *stack_b)
+{
+	t_list	*prev;
+	t_list	*last;
+
+	if (!stack || !stack->top || !stack->top->next)
+		return;
+	prev = NULL;
+	last = stack->top;
+	while (last->next)
 	{
-		curr = curr->next;
+		prev = last;
+		last = last->next;
 	}
-	tmp = stack->top;
-	stack->top = stack->top->next;
-	tmp->next = curr->next;
-	curr->next = tmp;
+	prev->next = NULL;
+	last->next = stack->top;
+	stack->top = last;
+	if (stack == stack_a)
+		write(1, "rra\n", 4);
+	else if (stack == stack_b)
+		write(1, "rrb\n", 4);
 }
 
-// void	rrotate(t_stack *stack)
-// {
-	
-// }
+void	double_ops(t_stack *stack_a, t_stack *stack_b, char op)
+{
+	if (op == 's')
+	{
+		swap(stack_a, stack_a, stack_b);
+		swap(stack_b, stack_a, stack_b);
+		write(1, "ss\n", 3);
+	}
+	else if (op == 'r')
+	{
+		rotate(stack_a, stack_a, stack_b);
+		rotate(stack_b, stack_a, stack_b);
+		write(1, "rr\n", 3);
+	}
+	else if (op == 'R')
+	{
+		reverse_rotate(stack_a, stack_a, stack_b);
+		reverse_rotate(stack_b, stack_a, stack_b);
+		write(1, "rrr\n", 4);
+	}
+}
