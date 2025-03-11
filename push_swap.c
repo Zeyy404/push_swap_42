@@ -23,7 +23,7 @@ int main(int ac, char **av)
 		}
 		stack_a = init_stack(lst);
 		stack_b = init_stack(NULL);
-		insertion_sort(stack_a, stack_a, stack_b);
+		quicksort(stack_a, stack_b);
 		for (t_list *tmp = stack_a->top; tmp; tmp = tmp->next)
 		{
 			printf("%d, ", tmp->value);

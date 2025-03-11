@@ -36,5 +36,6 @@ void	rotate(t_stack *stack, t_stack *stack_a, t_stack *stack_b);
 void	rrotate(t_stack *stack, t_stack *stack_a, t_stack *stack_b);
 void	double_ops(t_stack *stack_a, t_stack *stack_b, char op);
 void	insertion_sort(t_stack *stack, t_stack *stack_a, t_stack *stack_b);
+void	quicksort(t_stack *stack_a, t_stack *stack_b);
 
 #endif
