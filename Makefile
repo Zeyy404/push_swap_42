@@ -3,7 +3,7 @@ CFLAGS:= -Wall -Werror -Wextra
 NAME:= push_swap
 
 SRCS:= push_swap.c lst_utils.c libft_utils.c parse_utils.c push_swap_ops.c ft_split.c \
-		insertion_sort.c quicksort.c
+		insertion_sort.c quicksort.c insertion_sort_desc.c
 
 OBJS:= $(SRCS:.c=.o)
 
