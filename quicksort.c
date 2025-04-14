@@ -77,6 +77,8 @@ int find_median(t_list *top, int size)
         return 0;
     
     t_list *temp = top;
+    printf("temp = [%d]\n", temp->value);
+    printf("size = [%d]\n", size);
     for (int i = 0; i < size; i++)
     {
 		if (!temp)
@@ -136,7 +138,7 @@ int partitions(t_stack *stack, t_stack *stack_a, t_stack *stack_b, int size)
     int i = 0;
 
     pivot = find_median(stack->top, size);
-	// printf("stack_a pivot = [%d]\n", pivot);
+	printf("stack_a pivot = [%d]\n", pivot);
     while (i < size)
     {
         if (stack->top->value < pivot) 
@@ -163,20 +165,20 @@ int partitions_rev(t_stack *stack, t_stack *stack_a, t_stack *stack_b, int size)
     int i = 0;
 
     pivot = find_median(stack->top, size);
-	// printf("stack_b pivot = [%d]\n", pivot);
+	printf("stack_b pivot = [%d]\n", pivot);
     while (i < size)
     {
 		if (stack->top == NULL)
 			break ;
-        if (stack->top->value >= pivot) 
-        {
-            push(stack, stack_a, stack_a, stack_b);
-            pushed++;
-        }
-        else
+        if (stack->top->value < pivot) 
         {
             rotate(stack, stack_a, stack_b);
             rotated++;
+        }
+        else
+        {
+            push(stack, stack_a, stack_a, stack_b);
+            pushed++;
         }
         i++;
     }
@@ -200,7 +202,7 @@ void quicksort(t_stack *stack, t_stack *stack_a, t_stack *stack_b, int size)
 		if (stack == stack_b)
 		{
 			// printf("stack_b\n");
-        	insertion_sort_desc(stack, stack_a, stack_b, size);
+        	insertion_sort_desc(stack, stack_b, stack_a, size);
 		}
 		// t_list *tmp1 = stack->top;
         // for (int i = 0; i < size; i++)
@@ -245,7 +247,7 @@ void quicksort(t_stack *stack, t_stack *stack_a, t_stack *stack_b, int size)
 		quicksort(stack_a, stack_a, stack_b, (size - pushed));
 		quicksort(stack_b, stack_a, stack_b, pushed);
 		while (pushed--)
-			push(stack_b, stack_a, stack_a, stack_b);
+            push(stack_b, stack_a, stack_a, stack_b);
 		return ;
 	}
 	if (stack == stack_b)
