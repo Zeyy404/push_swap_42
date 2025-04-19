@@ -1,72 +1,79 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   partitioning.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zsalih <zsalih@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/19 21:48:09 by zsalih            #+#    #+#             */
+/*   Updated: 2025/04/19 22:26:31 by zsalih           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	partition_rrotate(t_stack *stack, t_stack *stack_a,
 		t_stack *stack_b, int rotated)
 {
-	while (rotated--)
-		rrotate(stack, stack_a, stack_b);
+	if (rotated < stack->size)
+		while (rotated--)
+			rrotate(stack, stack_a, stack_b);
 }
 
 int	partition_a(t_stack *stack, t_stack *stack_a, t_stack *stack_b, int size)
 {
-	int	pivot;
-	int	pushed;
-	int	rotated;
-	int	i;
+	t_partition_vars	vars;
+	int					i;
 
-	pushed = 0;
-	rotated = 0;
+	vars.pushed = 0;
+	vars.rotated = 0;
 	i = 0;
-	pivot = find_median(stack->top, size);
+	vars.pivot = find_median(stack->top, size);
 	while (i < size)
 	{
-		if (stack->top->value < pivot)
+		if (stack->top->value < vars.pivot)
 		{
 			push(stack, stack_b, stack_a, stack_b);
-			pushed++;
+			vars.pushed++;
 		}
 		else
 		{
 			rotate(stack, stack_a, stack_b);
-			rotated++;
+			vars.rotated++;
 		}
-		if (pushed >= size / 2)
+		if (vars.pushed >= size / 2)
 			break ;
 		i++;
 	}
-    if (rotated < stack->size)
-		partition_rrotate(stack, stack_a, stack_b, rotated);
-	return (pushed);
+	partition_rrotate(stack, stack_a, stack_b, vars.rotated);
+	return (vars.pushed);
 }
 
 int	partition_b(t_stack *stack, t_stack *stack_a, t_stack *stack_b, int size)
 {
-	int	pivot;
-	int	pushed;
-	int	rotated;
-	int	i;
+	t_partition_vars	vars;
+	int					i;
 
-	pushed = 0;
-	rotated = 0;
+	vars.pushed = 0;
+	vars.rotated = 0;
 	i = 0;
-	pivot = find_median(stack->top, size);
+	vars.pivot = find_median(stack->top, size);
 	while (i < size)
 	{
-		if (stack->top->value >= pivot)
+		if (stack->top->value >= vars.pivot)
 		{
 			push(stack, stack_a, stack_a, stack_b);
-			pushed++;
+			vars.pushed++;
 		}
 		else
 		{
 			rotate(stack, stack_a, stack_b);
-			rotated++;
+			vars.rotated++;
 		}
-        if (pushed >= size)
-            break ;
+		if (vars.pushed >= size)
+			break ;
 		i++;
 	}
-    if (rotated < stack->size)
-		partition_rrotate(stack, stack_a, stack_b, rotated);
-	return (pushed);
+	partition_rrotate(stack, stack_a, stack_b, vars.rotated);
+	return (vars.pushed);
 }
