@@ -23,7 +23,9 @@ int main(int ac, char **av)
 		}
 		stack_a = init_stack(lst);
 		stack_b = init_stack(NULL);
-		quicksort(stack_a, stack_b, stack_a->size);
+		quicksort_a(stack_a, stack_b, stack_a->size);
+		ft_lstclear(&stack_a->top);
+		free(stack_a);
 		free(stack_b);
 	}
 	return (0);

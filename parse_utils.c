@@ -22,6 +22,19 @@ int	is_duplicate(t_list *lst, int value)
 	}
 	return (0);
 }
+static void	free_split(char **strs)
+{
+	int	i = 0;
+
+	if (!strs)
+		return;
+	while (strs[i])
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
+}
 
 int	input_lst(t_list **lst, char *str)
 {
@@ -39,11 +52,13 @@ int	input_lst(t_list **lst, char *str)
 		if (is_duplicate(*lst, (int)value) || (value == 0 && str[0] != '0') || (value == -1 && str[0] != '-') || error == 1)
 		{
 			write(2, "Error\n", 6);
+			free_split(strs);
 			return (0);
 		}
 		ft_lstadd_back(lst, ft_lstnew((int)value));
 		i++;
 	}
+	free_split(strs);
 	return (1);
 }
 

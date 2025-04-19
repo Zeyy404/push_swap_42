@@ -126,5 +126,5 @@ void	insertion_sort_desc(t_stack *stack, t_stack *stack_a, t_stack *stack_b, int
 	if (size == 2 && stack->top->value < stack->top->next->value)
 		swap(stack_b, stack_a, stack_b);
 	if (size == 3)
-		sort_three(stack_b, stack_a);
+		sort_three(stack_a, stack_b);
 }
