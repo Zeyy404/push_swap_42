@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quicksort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zsalih <zsalih@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: zsalih < zsalih@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 21:49:04 by zsalih            #+#    #+#             */
-/*   Updated: 2025/04/19 21:49:05 by zsalih           ###   ########.fr       */
+/*   Updated: 2025/04/20 14:32:32 by zsalih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	quicksort_b(t_stack *stack_b, t_stack *stack_a, int size)
 		return (size);
 	if (is_sorted_b(stack_b, size))
 		return (size);
-	if (size <= 3)
+	if (size <=	3)
 	{
 		insertion_sort_desc(stack_b, stack_a, stack_b, size);
 		return (size);

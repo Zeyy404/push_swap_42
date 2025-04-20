@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   insertion_sort_desc.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zsalih <zsalih@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: zsalih < zsalih@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 21:48:38 by zsalih            #+#    #+#             */
-/*   Updated: 2025/04/19 22:35:42 by zsalih           ###   ########.fr       */
+/*   Updated: 2025/04/20 14:33:32 by zsalih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ void	insertion_sort_desc(t_stack *stack, t_stack *stack_a, t_stack *stack_b,
 		return ;
 	if (size == 2 && stack->top->value < stack->top->next->value)
 		swap(stack_b, stack_a, stack_b);
-	if (size == 3)
+	else if (size == 3)
 		sort_three(stack_a, stack_b);
 }
