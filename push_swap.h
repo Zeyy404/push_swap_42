@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zsalih <zsalih@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: zsalih < zsalih@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 21:49:37 by zsalih            #+#    #+#             */
-/*   Updated: 2025/04/19 22:21:30 by zsalih           ###   ########.fr       */
+/*   Updated: 2025/04/20 10:17:00 by zsalih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <limits.h>
-# include <stdlib.h>
-# include <unistd.h>
+#include <limits.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 typedef struct s_list
 {
