@@ -22,12 +22,14 @@ int	is_duplicate(t_list *lst, int value)
 	}
 	return (0);
 }
+
 static void	free_split(char **strs)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	if (!strs)
-		return;
+		return ;
 	while (strs[i])
 	{
 		free(strs[i]);
@@ -38,9 +40,9 @@ static void	free_split(char **strs)
 
 int	input_lst(t_list **lst, char *str)
 {
-	int	value;
-	int	i;
-	int error;
+	int		value;
+	int		i;
+	int		error;
 	char	**strs;
 
 	i = 0;
@@ -49,7 +51,8 @@ int	input_lst(t_list **lst, char *str)
 	while (strs[i])
 	{
 		value = ft_atoi(strs[i], &error);
-		if (is_duplicate(*lst, (int)value) || (value == 0 && str[0] != '0') || (value == -1 && str[0] != '-') || error == 1)
+		if (is_duplicate(*lst, (int)value) || (value == 0 && str[0] != '0')
+			|| (value == -1 && str[0] != '-') || error == 1)
 		{
 			write(2, "Error\n", 6);
 			free_split(strs);
@@ -64,7 +67,7 @@ int	input_lst(t_list **lst, char *str)
 
 t_stack	*init_stack(t_list *lst)
 {
-	t_stack *stack;
+	t_stack	*stack;
 
 	stack = malloc(sizeof(t_stack));
 	if (!stack)

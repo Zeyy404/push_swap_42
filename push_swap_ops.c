@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_ops.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zsalih <zsalih@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/19 21:47:55 by zsalih            #+#    #+#             */
+/*   Updated: 2025/04/19 21:47:56 by zsalih           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	swap(t_stack *stack, t_stack *stack_a, t_stack *stack_b)
@@ -23,7 +35,7 @@ void	push(t_stack *src, t_stack *dest, t_stack *stack_a, t_stack *stack_b)
 	t_list	*tmp;
 
 	if (!src || !src->top)
-		return;
+		return ;
 	tmp = src->top;
 	src->top = tmp->next;
 	tmp->next = dest->top;
@@ -42,7 +54,7 @@ void	rotate(t_stack *stack, t_stack *stack_a, t_stack *stack_b)
 	t_list	*last;
 
 	if (!stack || !stack->top || !stack->top->next)
-		return;
+		return ;
 	first = stack->top;
 	last = stack->top;
 	while (last->next)
@@ -62,7 +74,7 @@ void	rrotate(t_stack *stack, t_stack *stack_a, t_stack *stack_b)
 	t_list	*last;
 
 	if (!stack || !stack->top || !stack->top->next)
-		return;
+		return ;
 	prev = NULL;
 	last = stack->top;
 	while (last->next)
@@ -77,26 +89,4 @@ void	rrotate(t_stack *stack, t_stack *stack_a, t_stack *stack_b)
 		write(1, "rra\n", 4);
 	else if (stack == stack_b)
 		write(1, "rrb\n", 4);
-}
-
-void	double_ops(t_stack *stack_a, t_stack *stack_b, char op)
-{
-	if (op == 's')
-	{
-		swap(stack_a, stack_a, stack_b);
-		swap(stack_b, stack_a, stack_b);
-		write(1, "ss\n", 3);
-	}
-	else if (op == 'r')
-	{
-		rotate(stack_a, stack_a, stack_b);
-		rotate(stack_b, stack_a, stack_b);
-		write(1, "rr\n", 3);
-	}
-	else if (op == 'R')
-	{
-		rrotate(stack_a, stack_a, stack_b);
-		rrotate(stack_b, stack_a, stack_b);
-		write(1, "rrr\n", 4);
-	}
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pivot_selection.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zsalih <zsalih@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/19 21:48:03 by zsalih            #+#    #+#             */
+/*   Updated: 2025/04/19 22:37:00 by zsalih           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	ft_swap(int *a, int *b)
@@ -13,18 +25,18 @@ static void	quicksort_lst(int *arr, int left, int right)
 {
 	int	pivot;
 	int	i;
-    int j;
+	int	j;
 
 	if (left >= right)
 		return ;
 	pivot = arr[right];
 	i = left - 1;
-    j = left;
+	j = left;
 	while (j < right)
 	{
 		if (arr[j] < pivot)
 			ft_swap(&arr[++i], &arr[j]);
-        j++;
+		j++;
 	}
 	ft_swap(&arr[++i], &arr[right]);
 	quicksort_lst(arr, left, i - 1);
@@ -36,7 +48,7 @@ int	find_median(t_list *top, int size)
 	int		*values;
 	t_list	*temp;
 	int		median;
-    int		i;
+	int		i;
 
 	values = malloc(size * sizeof(int));
 	if (!values)
