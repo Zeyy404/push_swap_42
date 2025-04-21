@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   partitioning.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zsalih < zsalih@student.42abudhabi.ae>     +#+  +:+       +#+        */
+/*   By: zsalih <zsalih@student.42abudhabi.ae>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 21:48:09 by zsalih            #+#    #+#             */
-/*   Updated: 2025/04/20 12:41:12 by zsalih           ###   ########.fr       */
+/*   Updated: 2025/04/20 19:52:19 by zsalih           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,14 @@ int	has_pushable(t_list *top, int pivot, int size, int is_stack_a)
 	count = 0;
 	while (top && count < size)
 	{
-		if ((is_stack_a && top->value < pivot)
-			|| (!is_stack_a && top->value >= pivot))
+		if ((is_stack_a && top->value < pivot) || (!is_stack_a
+				&& top->value >= pivot))
 			return (1);
 		top = top->next;
 		count++;
 	}
 	return (0);
 }
-
 
 static void	partition_rrotate(t_stack *stack, t_stack *stack_a,
 		t_stack *stack_b, int rotated)
