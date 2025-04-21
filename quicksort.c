@@ -80,8 +80,10 @@ void	quicksort_a(t_stack *stack_a, t_stack *stack_b, int size)
 		return ;
 	if (is_sorted_a(stack_a, size))
 		return ;
-	if (size <= 3)
+	if (size <= 3 || stack_a->size <= 5)
 	{
+		if (stack_a->size <= 5)
+			insertion_sort_base(stack_a, stack_a, stack_b);
 		insertion_sort(stack_a, stack_a, stack_b, size);
 		return ;
 	}

@@ -12,17 +12,19 @@
 
 #include "push_swap.h"
 
-static int	handle_overflow(long result, int sign)
+static int	handle_overflow(long result, int sign, int *error)
 {
+	if (result == INT_MAX)
+		return (result * sign);
 	if (result > INT_MAX)
 	{
 		if (sign == -1)
 		{
 			if (result == 2147483648)
 				return (-2147483648);
-			return (0);
+			return (*error = 1, 0);
 		}
-		return (-1);
+		return (*error = 1, -1);
 	}
 	return (result * sign);
 }
@@ -49,8 +51,8 @@ int	ft_atoi(const char *nptr, int *error)
 		nptr++;
 	}
 	if (*nptr != '\0' && (*nptr < '0' || *nptr > '9'))
-		return (*error = 1);
-	return (handle_overflow(result, sign));
+		return (*error = 1, 0);
+	return (handle_overflow(result, sign, error));
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)

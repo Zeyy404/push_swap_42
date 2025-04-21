@@ -51,8 +51,7 @@ int	input_lst(t_list **lst, char *str)
 	while (strs[i])
 	{
 		value = ft_atoi(strs[i], &error);
-		if (is_duplicate(*lst, (int)value) || (value == 0 && str[0] != '0')
-			|| (value == -1 && str[0] != '-') || error == 1)
+		if (is_duplicate(*lst, (int)value) || error == 1)
 		{
 			write(2, "Error\n", 6);
 			free_split(strs);

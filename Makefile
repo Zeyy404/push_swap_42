@@ -5,7 +5,7 @@ BONUS_NAME := checker
 
 SRCS:= push_swap.c lst_utils.c libft_utils.c parse_utils.c push_swap_ops.c ft_split.c \
 		insertion_sort.c quicksort.c insertion_sort_desc.c pivot_selection.c \
-		partitioning.c
+		partitioning.c direct_sort.c
 
 OBJS:= $(SRCS:.c=.o)
 
